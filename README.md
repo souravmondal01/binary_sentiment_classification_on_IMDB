@@ -35,7 +35,6 @@ The dataset contains 50,000 movie reviews, evenly split between positive and neg
      - **Confusion Matrix**
 
 5. **Visualization**
-   - WordClouds are used to display the most frequent words in positive and negative reviews.
    - Sentiment predictions and their corresponding reviews are visualized in a DataFrame.
 
 ## Key Steps in the Code
@@ -100,19 +99,57 @@ The dataset contains 50,000 movie reviews, evenly split between positive and neg
   ```
 
 ## Results
-- **Logistic Regression Accuracy**: ~85%
-- **Random Forest Accuracy**: ~87%
-- Example Confusion Matrix:
+- **Logistic Regression Accuracy**: ~90%
+- **Random Forest Accuracy**: ~86%
+- logistic Regression Confusion Matrix:
   ```
-  [[4300  200]
-   [ 300 4200]]
+  [[4515  492]
+   [ 508 4485]]
   ```
+
+## Explain logistic Regression Confusion Matrix
+### 1. Breakdown of Components
+- **4515 (True Positives, TP)**: Number of samples that were correctly classified as `Positive`.
+- **492 (False Negatives, FN)**: Number of samples that were actually `Positive` but incorrectly classified as `Negative`.
+- **508 (False Positives, FP)**: Number of samples that were actually `Negative` but incorrectly classified as `Positive`.
+- **4485 (True Negatives, TN)**: Number of samples that were correctly classified as `Negative`.
+
+### 2. Performance Metrics
+From the confusion matrix, we can calculate important metrics to evaluate the model's performance:
+
+#### 1. **Accuracy**
+   - The proportion of total predictions that are correct.
+   - Formula:  
+     Accuracy = (TP + TN)/(TP + TN + FP + FN)
+   - Substituting values:  
+     Accuracy = (4515 + 4485)/(4515 + 4485 + 508 + 492) = (9000)/(10000) = 0.9, (90%)
+
+#### 2. **Precision** (for the `Positive` class)
+   - The proportion of predicted `Positive` samples that are actually `Positive`.
+   - Formula:  
+     Precision = (TP)/(TP + FP)
+   - Substituting values:  
+     Precision = (4515)/(4515 + 508) = (4515)/(5023) = approx 0.899, (89.9%)
+
+#### 3. **Recall** (for the `Positive` class)
+   - The proportion of actual `Positive` samples correctly identified by the model.
+   - Formula:  
+     Recall = (TP)/(TP + FN)
+   - Substituting values:  
+     Recall = (4515)/(4515 + 492) = (4515)/(5007) =approx 0.902, (90.2%)
+
+#### 4. **F1-Score**
+   - The harmonic mean of Precision and Recall, balancing the trade-off between the two.
+   - Formula:  
+     F1 = 2 * ((Precision * Recall) / (Precision + Recall))
+   - Substituting values:  
+     F1 = 2 * ((0.899 * 0.902) / (0.899 + 0.902)) = approx 2 * (0.811) / (1.801) = approx 0.90 (90%)
 
 ## How to Run the Code
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/imdb-sentiment-classification.git
-   cd imdb-sentiment-classification
+   git clone https://github.com/souravmondal01/binary_sentiment_classification_on_IMDB.git
+   cd binary_sentiment_classification_on_IMDB
    ```
 2. Install dependencies:
    ```bash
@@ -120,7 +157,7 @@ The dataset contains 50,000 movie reviews, evenly split between positive and neg
    ```
 3. Execute the script:
    ```bash
-   python sentiment_analysis.py
+   python binary_sentiment_classification_on_IMDB.ipynb
    ```
 
 ## Future Enhancements
